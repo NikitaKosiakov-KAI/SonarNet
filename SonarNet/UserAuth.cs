@@ -4,10 +4,15 @@ namespace SonarNet
 {
     public class UserAuth
     {
-        // Метод для базової перевірки користувача
         public bool Authenticate(string username, string password)
         {
-            // Проста заглушка для лабораторної роботи
+            // Hotfix: Додано перевірку на порожні значення, щоб уникнути помилок системи
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            {
+                Console.WriteLine("Критична помилка: Логін або пароль не можуть бути порожніми!");
+                return false;
+            }
+
             if (username == "admin" && password == "password123")
             {
                 Console.WriteLine("Аутентифікація успішна!");
